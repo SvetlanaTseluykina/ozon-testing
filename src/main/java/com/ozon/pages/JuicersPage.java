@@ -28,7 +28,7 @@ public class JuicersPage {
     private static final String JUICER = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div/div/div[2]/div/div/div[3]/div[2]/div/div/button";
     private static final String BASKET_BUTTON = "//*[@id=\"__nuxt\"]/div/div[1]/header/div[1]/div[4]/a[2]";
     private static final String JUCIER_POWER = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[10]/div[2]/div[2]/div[1]/input";
-    private static final String NEW_JUCIER = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div[1]/div/div[1]/div/div/div[3]/div[2]/div/div/button";
+    private static final String NEW_JUCIER ="//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div[1]/div/div[1]/div/div/div[3]/div[2]/div/div/button";
     private static final String COST_FROM = "3000";
     private static final String COST_TO = "4000";
     private static final String POWER = "1000";
@@ -135,13 +135,14 @@ public class JuicersPage {
         setCost();
         setJuicerPower();
         sortByCost();
-        synchronized (driver) {
-            js.executeScript("window.scrollBy(0,200)");
+      //  synchronized (driver) {
+            js.executeScript("window.scrollBy(0,350)");
+      //      driver.wait(1000);
             clickToChooseNewJucier();
-            driver.wait(2000);
-            js.executeScript("window.scrollBy(0,-200)");
+      //      driver.wait(1000);
+            js.executeScript("window.scrollBy(0,-350)");
             clickBasketButton();
-        }
+      //  }
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(BasketPage.getNewCost()));
         return new BasketPage(driver);

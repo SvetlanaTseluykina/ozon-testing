@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="TestSuite">
+    <test name="FirstTest">
+        <classes>
+            <class name="com.ozon.test.LoginTest"/>
+        </classes>
+    </test>
+    <test name="SecondTest">
+        <classes>
+            <class name="com.ozon.test.CityTest"/>
+        </classes>
+    </test>
+    <test name="ThirdTest">
+        <classes>
+            <class name="com.ozon.test.JuicersTest"/>
+        </classes>
+    </test>
+</suite>

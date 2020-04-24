@@ -36,7 +36,6 @@ public class AppliancePage {
 
     @Step("Go to juicers page")
     public JuicersPage goToJuicersPage() {
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1000)");
         clickAllGoods();

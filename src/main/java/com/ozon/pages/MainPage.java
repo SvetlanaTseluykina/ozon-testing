@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class MainPage {
 
     private WebDriver driver;
-    private static final By LOGIN_BUTTON =
+    private static final By LOGIN_BUTTON_SETTINGS =
             By.xpath("//*[@id=\"__nuxt\"]/div/div[1]/header/div[1]/div[4]/div[1]/div[1]");
     private static final By ENTER_BY_EMAIL_BUTTON =
             By.xpath("/html/body/div[3]/div/div/div/div/div/div/div/div/div[4]/a[1]");
@@ -51,8 +51,16 @@ public class MainPage {
     }
 
     @Step("Click login button")
-    public void clickLoginButton() {
-        driver.findElement(LOGIN_BUTTON).click();
+    public LoginPage clickLoginButton() {
+        driver.findElement(CURRENT_PROFILE_BUTTON).click();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, EXPLICIT_WAIT);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(LoginPage.getExitButton()));
+        return new LoginPage(driver);
+    }
+
+    @Step("Click login settings button")
+    public void clickLoginSettingsButton() {
+        driver.findElement(LOGIN_BUTTON_SETTINGS).click();
     }
 
     @Step("Click enter by email button")
@@ -76,12 +84,14 @@ public class MainPage {
         driver.findElement(GET_CODE_BUTTON).click();
     }
 
-    @Step("Open ozon page")
-    public void openOzonPage() {
+    public void setProperty() {
         System.setProperty(PropertyLoader.getProperty("keyPropertyDriver"),
                 PropertyLoader.getProperty("valuePropertyDriver"));
+    }
+
+    @Step("Open ozon page")
+    public void openOzonPage() {
         driver.get(PropertyLoader.getProperty("host"));
-       // driver.manage().window().fullscreen();
         synchronized (driver) {
             try {
                 driver.wait(1000);
@@ -162,12 +172,13 @@ public class MainPage {
     @Step("Go to delivery page")
     public DeliveryPage goToDeliveryPage() {
         clickDeliveryPoint();
+        driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
         return new DeliveryPage(driver);
     }
 
     @Step("fill all data to login")
     public void fillData(String email)  {
-        clickLoginButton();
+        clickLoginSettingsButton();
         driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
         clickEnterByEmailButton();
         clickEmailField();

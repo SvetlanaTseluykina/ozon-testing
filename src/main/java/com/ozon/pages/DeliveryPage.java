@@ -21,6 +21,7 @@ public class DeliveryPage {
     private static final By MAIN_PAGE = By.xpath("//*[@id=\"__nuxt\"]/div/div[1]/header/div[1]/div[1]/a");
     private WebDriver driver;
 
+    @Step("check city name")
     public void checkCityNameInLocality() {
         Assert.assertEquals(driver.findElement(CITY_NAME).getText(), driver.findElement(LOCALITY).getText());
     }

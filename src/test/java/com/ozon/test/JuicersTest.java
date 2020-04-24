@@ -1,19 +1,18 @@
 package com.ozon.test;
 
 import com.ozon.OzonStarter;
-import com.ozon.pages.AppliancePage;
-import com.ozon.pages.BasketPage;
-import com.ozon.pages.JuicersPage;
-import com.ozon.pages.MainPage;
+import com.ozon.pages.*;
+import com.ozon.utils.AllureListener;
 import com.ozon.utils.InitializeDriver;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(AllureListener.class)
 @SpringBootTest(classes = OzonStarter.class)
 public class JuicersTest extends AbstractTestNGSpringContextTests {
 
@@ -22,6 +21,9 @@ public class JuicersTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     MainPage mainPage;
+
+    @Autowired
+    LoginPage loginPage;
 
     @Autowired
     AppliancePage appliancePage;
@@ -35,6 +37,7 @@ public class JuicersTest extends AbstractTestNGSpringContextTests {
     @BeforeClass
     public void openOzonPage() {
         mainPage = driver.goToMainPage();
+        mainPage.setProperty();
         mainPage.openOzonPage();
     }
 
@@ -62,7 +65,9 @@ public class JuicersTest extends AbstractTestNGSpringContextTests {
     }
 
     @AfterClass
-    public void closeDriver() {
+    public void closeDriver() throws InterruptedException {
+        loginPage = mainPage.clickLoginButton();
+        mainPage = loginPage.clickConfirmationButton();
         mainPage.closeDriver();
     }
 }

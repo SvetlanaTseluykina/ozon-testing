@@ -22,8 +22,8 @@ public class BasketPage {
     private static final String COST_LIST = "//*[@id=\"__nuxt\"]/div/div[1]/div/div/div[3]/div[5]/div[1]/div[1]/div/div[2]/div[3]/div[4]/div/div[1]/div/div[1]/div/div/input";
     private static final String MAIN_PAGE = "//*[@id=\"__nuxt\"]/div/div[1]/div/div/div[2]/div/header/div[1]/div[1]/a";
     private static final String DELETE_BUTTON = "//*[@id=\"__nuxt\"]/div/div[1]/div/div/div[3]/div[5]/div[1]/div[1]/div/div[1]/span";
-    private static final String CONFIRM_DELETION_FOR_NEW_JUICE = "/html/body/div[34]/div/div/div/div/section/div[3]/div/button";
-    private static final String CONFIRM_DELETION = "/html/body/div[19]/div/div/div/div/section/div[3]/div/button";
+    private static final String CONFIRM_DELETION_FOR_NEW_JUICE = "/html/body/div[33]/div/div/div/div/section/div[3]/div/button";
+    private static final String CONFIRM_DELETION = "/html/body/div[18]/div/div/div/div/section/div[3]/div/button";
     private static final String NEW_COST = "//*[@id=\"__nuxt\"]/div/div[1]/div/div/div[3]/div[5]/div[1]/div[1]/div/div[2]/div[3]/div[3]/div/div/span";
 
     @Step("Getting cost element")
@@ -57,7 +57,6 @@ public class BasketPage {
             driver.wait(2000);
             cost = driver.findElement(By.xpath(COST)).getText();
             int newJuiceCost = Integer.parseInt(cost.substring(0, 2) + cost.substring(3, 6));
-            System.out.println(oldJuiceCost + " " + newJuiceCost + " " + newJuiceCost / oldJuiceCost);
             Assert.assertEquals(newJuiceCost / oldJuiceCost, 5);
         }
     }
@@ -76,7 +75,6 @@ public class BasketPage {
             driver.wait(2000);
             cost = driver.findElement(By.xpath(NEW_COST)).getText();
             int newJuiceCost = Integer.parseInt(cost.substring(0, 1) + cost.substring(2, 5));
-            System.out.println(oldJuiceCost + " " + newJuiceCost + " " + newJuiceCost / oldJuiceCost);
             Assert.assertEquals(newJuiceCost / oldJuiceCost, 2);
         }
     }

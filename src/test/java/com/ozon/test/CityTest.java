@@ -44,9 +44,4 @@ public class CityTest extends AbstractTestNGSpringContextTests {
         deliveryPage.checkCityNameInLocality();
         deliveryPage.goToStartPage();
     }
-
-/*    @AfterClass
-    public void closeDriver() {
-        mainPage.closeDriver();
-    }*/
 }

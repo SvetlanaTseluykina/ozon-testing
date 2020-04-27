@@ -29,11 +29,14 @@ public class LoginPage {
     }
 
     @Step("Click confirmation button")
-    public MainPage clickConfirmationButton() {
-        clickExitButton();
-        driver.findElement(By.xpath(CONFIRMATION_BUTTON));
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(MainPage.getCatallogButton()));
-        return new MainPage(driver);
+    public MainPage clickConfirmationButton() throws InterruptedException {
+        synchronized (driver) {
+            clickExitButton();
+            driver.wait(1000);
+            driver.findElement(By.xpath(CONFIRMATION_BUTTON));
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(MainPage.getCatallogButton()));
+            return new MainPage(driver);
+        }
     }
 }

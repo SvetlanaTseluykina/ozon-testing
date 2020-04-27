@@ -51,11 +51,11 @@ public class MainPage {
     }
 
     @Step("Click login button")
-    public LoginPage clickLoginButton() {
+    public MyMainPage clickLoginButton() {
         driver.findElement(CURRENT_PROFILE_BUTTON).click();
         WebDriverWait webDriverWait = new WebDriverWait(driver, EXPLICIT_WAIT);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(LoginPage.getExitButton()));
-        return new LoginPage(driver);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(MyMainPage.getChangeProfile()));
+        return new MyMainPage(driver);
     }
 
     @Step("Click login settings button")
@@ -193,20 +193,6 @@ public class MainPage {
         WebElement firstResult = new WebDriverWait(driver, EXPLICIT_WAIT)
                 .until(ExpectedConditions.elementToBeClickable(CURRENT_PROFILE_BUTTON));
         Assert.assertEquals(firstResult.getAttribute(REF_ATTRIBUTE), PropertyLoader.getProperty("settings"));
-    }
-
-    @Step("Check incorrect mail format")
-    public void checkIncorrectEmail(String email) {
-        fillData(email);
-        Assert.assertEquals(driver.findElement(INCORRECT_EMAIL_MESSAGE).getText(), "Некорректный формат почты");
-        clickCloseButton();
-    }
-
-    @Step("Check empty email")
-    public void checkEmptyEmail(String email) {
-        fillData(email);
-        Assert.assertEquals(driver.findElement(INCORRECT_EMAIL_MESSAGE).getText(), "Заполните почту");
-        clickCloseButton();
     }
 
     @Step("Close driver")

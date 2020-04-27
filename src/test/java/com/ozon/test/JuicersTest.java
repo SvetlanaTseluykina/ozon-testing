@@ -26,6 +26,9 @@ public class JuicersTest extends AbstractTestNGSpringContextTests {
     LoginPage loginPage;
 
     @Autowired
+    MyMainPage myMainPage;
+
+    @Autowired
     AppliancePage appliancePage;
 
     @Autowired
@@ -66,7 +69,8 @@ public class JuicersTest extends AbstractTestNGSpringContextTests {
 
     @AfterClass
     public void closeDriver() throws InterruptedException {
-        loginPage = mainPage.clickLoginButton();
+        myMainPage = mainPage.clickLoginButton();
+        loginPage = myMainPage.goToLoginPage();
         mainPage = loginPage.clickConfirmationButton();
         mainPage.closeDriver();
     }

@@ -6,13 +6,9 @@ import lombok.NoArgsConstructor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Component
 @AllArgsConstructor
@@ -25,10 +21,9 @@ public class JuicersPage {
             By.xpath("//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[2]/div[2]/div[2]/div[2]/input");
     private static final String JUCIER_PRICE = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div/div/div[1]/div/div/div[3]/a/div/span";
     private static final String LIST = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div/div/div[1]/div/div/input";
-    private static final String JUICER = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div/div/div[2]/div/div/div[3]/div[2]/div/div/button";
+    private static final String JUICER = ".a4o7.a4o8 button";
     private static final String BASKET_BUTTON = "//*[@id=\"__nuxt\"]/div/div[1]/header/div[1]/div[4]/a[2]";
     private static final String JUCIER_POWER = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[10]/div[2]/div[2]/div[1]/input";
-    private static final String NEW_JUCIER ="//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div[1]/div/div[1]/div/div/div[3]/div[2]/div/div/button";
     private static final String COST_FROM = "3000";
     private static final String COST_TO = "4000";
     private static final String POWER = "1000";
@@ -84,7 +79,7 @@ public class JuicersPage {
 
     @Step("Click to add juicer")
     public void clickToAddJuicer() {
-        driver.findElement(By.xpath(JUICER)).click();
+        driver.findElements(By.cssSelector(JUICER)).get(2).click();
     }
 
     @Step("Click basket button")
@@ -98,10 +93,10 @@ public class JuicersPage {
         synchronized (driver) {
             driver.wait(2000);
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0,500)");
+            js.executeScript("window.scrollBy(0,900)");
             driver.wait(2000);
             clickToAddJuicer();
-            js.executeScript("window.scrollBy(0,-500)");
+            js.executeScript("window.scrollBy(0,-900)");
             driver.wait(2000);
             clickBasketButton();
         }
@@ -127,7 +122,7 @@ public class JuicersPage {
 
     @Step("Click to choose new jucier")
     public void clickToChooseNewJucier() {
-        driver.findElement(By.xpath(NEW_JUCIER)).click();
+        driver.findElements(By.cssSelector(JUICER)).get(0).click();
     }
 
     public BasketPage chooseJuiceWithSettedPower() throws InterruptedException {
@@ -135,14 +130,10 @@ public class JuicersPage {
         setCost();
         setJuicerPower();
         sortByCost();
-      //  synchronized (driver) {
-            js.executeScript("window.scrollBy(0,350)");
-      //      driver.wait(1000);
-            clickToChooseNewJucier();
-      //      driver.wait(1000);
-            js.executeScript("window.scrollBy(0,-350)");
-            clickBasketButton();
-      //  }
+        js.executeScript("window.scrollBy(0,350)");
+        clickToChooseNewJucier();
+        js.executeScript("window.scrollBy(0,-350)");
+        clickBasketButton();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(BasketPage.getNewCost()));
         return new BasketPage(driver);

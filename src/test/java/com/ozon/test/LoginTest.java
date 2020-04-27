@@ -39,15 +39,4 @@ public class LoginTest extends AbstractTestNGSpringContextTests {
         mainPage.openPage(LoginData.getCorrectEmail());
     }
 
-    /*@Test
-    public void checkIncorrectEmail() {
-        mainPage.checkIncorrectEmail(LoginData.getIncorrectEmail());
-    }
-
-    @Test
-    public void checkEmptyEmail() {
-        mainPage.checkEmptyEmail(LoginData.getEmptyEmail());
-    }*/
-
-
 }

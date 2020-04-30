@@ -49,15 +49,15 @@ public class BasketPage {
             clickList();
             driver.wait(2000);
             WebElement webElement = driver.findElement(By.xpath(COST_LIST));
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 1; i++) {
                 webElement.sendKeys(Keys.ARROW_DOWN);
             }
             driver.wait(2000);
             webElement.sendKeys(Keys.ENTER);
             driver.wait(2000);
             cost = driver.findElement(By.xpath(COST)).getText();
-            int newJuiceCost = Integer.parseInt(cost.substring(0, 2) + cost.substring(3, 6));
-            Assert.assertEquals(newJuiceCost / oldJuiceCost, 5);
+            int newJuiceCost = Integer.parseInt(cost.substring(0, 1) + cost.substring(2, 5));
+            Assert.assertEquals(newJuiceCost / oldJuiceCost, 2);
         }
     }
 

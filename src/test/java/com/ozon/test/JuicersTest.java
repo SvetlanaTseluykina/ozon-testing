@@ -49,6 +49,7 @@ public class JuicersTest extends AbstractTestNGSpringContextTests {
         appliancePage = mainPage.goToAppliancePage();
         juicersPage = appliancePage.goToJuicersPage();
         juicersPage.checkCost();
+
     }
 
     @Test(priority = 1)

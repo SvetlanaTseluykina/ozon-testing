@@ -21,7 +21,7 @@ public class JuicersPage {
             By.xpath("//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[2]/div[2]/div[2]/div[2]/input");
     private static final String JUCIER_PRICE = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div/div/div[1]/div/div/div[3]/a/div/span";
     private static final String LIST = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div/div/div[1]/div/div/input";
-    private static final String JUICER = ".a4o7.a4o8 button";
+    private static final String JUICER = ".a5w.a5w0 button";
     private static final String BASKET_BUTTON = "//*[@id=\"__nuxt\"]/div/div[1]/header/div[1]/div[4]/a[2]";
     private static final String JUCIER_POWER = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[10]/div[2]/div[2]/div[1]/input";
     private static final String COST_FROM = "3000";

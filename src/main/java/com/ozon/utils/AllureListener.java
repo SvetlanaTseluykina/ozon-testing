@@ -23,13 +23,6 @@ public class AllureListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         System.out.println("*** Test execution " + result.getMethod().getMethodName() + " failed...");
         System.out.println(result.getMethod().getMethodName() + " failed!");
-
-        ITestContext context = result.getTestContext();
-        WebDriver driver = (WebDriver) context.getAttribute("driver");
-
-        // attach screenshots to report
-        saveFailureScreenShot(driver);
-
     }
 
     @Override
@@ -52,8 +45,4 @@ public class AllureListener implements ITestListener {
 
     }
 
-    @Attachment
-    public byte[] saveFailureScreenShot(WebDriver driver) {
-        return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-    }
 }

@@ -19,11 +19,11 @@ public class JuicersPage {
             By.xpath("//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[2]/div[2]/div[2]/div[1]/input");
     private static final By COST_TO_BUTTON =
             By.xpath("//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[2]/div[2]/div[2]/div[2]/input");
-    private static final String JUCIER_PRICE = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div/div/div[1]/div/div/div[3]/a/div/span";
-    private static final String LIST = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div/div/div[1]/div/div/input";
-    private static final String JUICER = ".a5w.a5w0 button";
+    private static final String JUCIER_PRICE = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div/div/div[2]/div/div/div[3]/a/div[2]/span";
+    private static final String LIST = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div/div/div[1]/div/div/input";
+    private static final String JUICER = ".a4o3.a4o4 button";
     private static final String BASKET_BUTTON = "//*[@id=\"__nuxt\"]/div/div[1]/header/div[1]/div[4]/a[2]";
-    private static final String JUCIER_POWER = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[10]/div[2]/div[2]/div[1]/input";
+    private static final String JUCIER_POWER = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[9]/div[2]/div[2]/div[1]/input";
     private static final String COST_FROM = "3000";
     private static final String COST_TO = "4000";
     private static final String POWER = "1000";
@@ -46,7 +46,7 @@ public class JuicersPage {
         synchronized (driver) {
             driver.wait(3000);
         }
-        js.executeScript("window.scrollBy(0,200)");
+        js.executeScript("window.scrollBy(0,300)");
         actions.doubleClick(costTo).perform();
         costTo.sendKeys(COST_TO);
         costTo.sendKeys(Keys.ENTER);
@@ -66,6 +66,8 @@ public class JuicersPage {
     @Step("Sorting by cost")
     public void sortByCost() throws InterruptedException {
         synchronized (driver) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0,200)");
             WebElement webElement = driver.findElement(By.xpath(LIST));
             webElement.click();
             driver.wait(2000);
@@ -79,7 +81,7 @@ public class JuicersPage {
 
     @Step("Click to add juicer")
     public void clickToAddJuicer() {
-        driver.findElements(By.cssSelector(JUICER)).get(2).click();
+       driver.findElements(By.cssSelector(JUICER)).get(1).click();
     }
 
     @Step("Click basket button")
@@ -91,12 +93,12 @@ public class JuicersPage {
     public BasketPage chooseJuicer() throws InterruptedException {
         sortByCost();
         synchronized (driver) {
-            driver.wait(2000);
+            driver.wait(3000);
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0,900)");
+            js.executeScript("window.scrollBy(0,600)");
             driver.wait(2000);
             clickToAddJuicer();
-            js.executeScript("window.scrollBy(0,-900)");
+            js.executeScript("window.scrollBy(0,-600)");
             driver.wait(2000);
             clickBasketButton();
         }
@@ -109,7 +111,7 @@ public class JuicersPage {
     public void setJuicerPower() throws InterruptedException {
         synchronized (driver) {
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0,500)");
+            js.executeScript("window.scrollBy(0,800)");
             WebElement webElement = driver.findElement(By.xpath(JUCIER_POWER));
             Actions actions = new Actions(driver);
             actions.doubleClick(webElement).perform();
@@ -130,9 +132,9 @@ public class JuicersPage {
         setCost();
         setJuicerPower();
         sortByCost();
-        js.executeScript("window.scrollBy(0,350)");
+        js.executeScript("window.scrollBy(0,150)");
         clickToChooseNewJucier();
-        js.executeScript("window.scrollBy(0,-350)");
+        js.executeScript("window.scrollBy(0,-150)");
         clickBasketButton();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(BasketPage.getNewCost()));

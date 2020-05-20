@@ -15,4 +15,4 @@ For allure report run:
 ```
 mvn allure:serve
 ```
-WARNING: these tests are correct for site version on 30/04/2020 and might be different later.
+WARNING: these tests are correct for site version on 20/05/2020 and might be different later.

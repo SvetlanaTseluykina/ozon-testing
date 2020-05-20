@@ -22,13 +22,14 @@ public class LoginTest extends AbstractTestNGSpringContextTests {
     LoginPage loginPage;
 
     @Autowired
-    InitializeDriver driver;
+    MainPage mainPage;
 
     @Autowired
-    MainPage mainPage;
+    InitializeDriver driver;
 
     @BeforeClass
     public void openOzonPage() {
+       // driver = new InitializeDriver();
         mainPage = driver.goToMainPage();
         mainPage.setProperty();
         mainPage.openOzonPage();
@@ -38,5 +39,10 @@ public class LoginTest extends AbstractTestNGSpringContextTests {
     public void openLoginPage() {
         mainPage.openPage(LoginData.getCorrectEmail());
     }
+
+//    @AfterClass
+//    public void shutDriver() {
+//        driver.closeDriver();
+//    }
 
 }

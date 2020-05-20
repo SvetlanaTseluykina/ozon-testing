@@ -17,9 +17,6 @@ import org.testng.annotations.Test;
 public class JuicersTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    InitializeDriver driver;
-
-    @Autowired
     MainPage mainPage;
 
     @Autowired
@@ -37,8 +34,12 @@ public class JuicersTest extends AbstractTestNGSpringContextTests {
     @Autowired
     BasketPage basketPage;
 
+    @Autowired
+    InitializeDriver driver;
+
     @BeforeClass
     public void openOzonPage() {
+        //driver = new InitializeDriver();
         mainPage = driver.goToMainPage();
         mainPage.setProperty();
         mainPage.openOzonPage();

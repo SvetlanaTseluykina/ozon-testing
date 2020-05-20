@@ -8,6 +8,7 @@ import com.ozon.utils.InitializeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -18,16 +19,17 @@ import testdata.CityData;
 public class CityTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    InitializeDriver driver;
-
-    @Autowired
     MainPage mainPage;
 
     @Autowired
     DeliveryPage deliveryPage;
 
+    @Autowired
+    InitializeDriver driver;
+
     @BeforeClass
     public void openOzonPage() {
+        //driver = new InitializeDriver();
         mainPage = driver.goToMainPage();
         mainPage.setProperty();
         mainPage.openOzonPage();
@@ -44,4 +46,5 @@ public class CityTest extends AbstractTestNGSpringContextTests {
         deliveryPage.checkCityNameInLocality();
         deliveryPage.goToStartPage();
     }
+
 }

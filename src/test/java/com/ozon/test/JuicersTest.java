@@ -39,7 +39,6 @@ public class JuicersTest extends AbstractTestNGSpringContextTests {
 
     @BeforeClass
     public void openOzonPage() {
-        //driver = new InitializeDriver();
         mainPage = driver.goToMainPage();
         mainPage.setProperty();
         mainPage.openOzonPage();

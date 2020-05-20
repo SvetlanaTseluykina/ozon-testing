@@ -9,15 +9,8 @@ import org.springframework.stereotype.Component;
 public class InitializeDriver {
     private WebDriver driver = new ChromeDriver();
 
-//    public InitializeDriver() {
-//        driver = new ChromeDriver();
-//    }
-
     public MainPage goToMainPage() {
         return new MainPage(driver);
     }
 
-    public void closeDriver() {
-        driver.close();
-    }
 }
